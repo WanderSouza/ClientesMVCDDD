@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ClientesMVC.MVC.ViewModels.ClienteViewModel>
+
+@{
+    ViewBag.Title = "Cadastro de Clientes";
+}
+
+<br />
+
+<p>
+    @Html.ActionLink("Cadastrar Cliente", "Create", "Cliente", new { @class = "btn btn-primary" })
+</p>
+@* Exibe a tabela apenas se o model tiver algum registro *@
+@if (Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                CPF/CNPJ
+            </th>
+            <th>
+                Cidade
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoPessoa)
+                </td>
+                <td>
+                    @* Passando como parâmetros para o controller o ID e o tipo da pessoa *@
+                    @Html.ActionLink("Editar", "Edit", "Clientes", new { id = item.ID, tipoPessoa = item.TipoPessoa }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Detalhes", "Details", "Clientes", new { id = item.ID, tipoPessoa = item.TipoPessoa }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Excluir", "Delete", "Clientes", new { id = item.ID, tipoPessoa = item.TipoPessoa }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

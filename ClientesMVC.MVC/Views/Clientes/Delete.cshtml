@@ -1,0 +1,157 @@
+﻿@model ClientesMVC.MVC.ViewModels.ClienteViewModel
+@using ClientesMVC.Domain.Entities.Enums
+
+@{
+    ViewBag.Title = "Excuir";
+}
+
+<h2>Excluir</h2>
+
+<h3>Deseja realmente excluir os dados desse cliente?</h3>
+<div>
+    <div>
+        <!-- Radio button para selecionar pessoa física ou jurídica -->
+        <div>
+            <label id="radioF">
+                @Html.RadioButtonFor(model => model.TipoPessoa, TipoPessoa.Física, htmlAttributes: new { @class = "hidden" })
+            </label>
+        </div>
+        <div>
+            <label id="radioJ">
+                @Html.RadioButtonFor(model => model.TipoPessoa, TipoPessoa.Jurídica, htmlAttributes: new { @class = "hidden" })
+            </label>
+        </div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CEP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CEP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Logradouro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Logradouro)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Numero)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Numero)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Complemento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Complemento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Bairro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bairro)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UFID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UF.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CidadeID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cidade.Nome)
+            </dd>
+
+            @* Pessoa Física *@
+            <dt class="CPF">
+                @Html.DisplayNameFor(model => model.CPF)
+            </dt>
+
+            <dd class="CPF">
+                @Html.DisplayFor(model => model.CPF)
+            </dd>
+
+            <dt class="CPF">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+
+            <dd class="CPF">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+
+            <dt class="CPF">
+                @Html.DisplayNameFor(model => model.Sobrenome)
+            </dt>
+
+            <dd class="CPF">
+                @Html.DisplayFor(model => model.Sobrenome)
+            </dd>
+
+            <dt class="CPF">
+                @Html.DisplayNameFor(model => model.DataNasc)
+            </dt>
+
+            <dd class="CPF">
+                @Html.DisplayFor(model => model.DataNasc)
+            </dd>
+            @* End Pessoa Física *@
+
+            @* Pessoa Jurídica *@
+            <dt class="CNPJ">
+                @Html.DisplayNameFor(model => model.CNPJ)
+            </dt>
+
+            <dd class="CNPJ">
+                @Html.DisplayFor(model => model.CNPJ)
+            </dd>
+
+            <dt class="CNPJ">
+                @Html.DisplayNameFor(model => model.RazaoSocial)
+            </dt>
+
+            <dd class="CNPJ">
+                @Html.DisplayFor(model => model.RazaoSocial)
+            </dd>
+
+            <dt class="CNPJ">
+                @Html.DisplayNameFor(model => model.NomeFantasia)
+            </dt>
+
+            <dd class="CNPJ">
+                @Html.DisplayFor(model => model.NomeFantasia)
+            </dd>
+            @* End Pessoa Jurídica *@
+
+        </dl>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            @Html.ActionLink("Lista de Clientes", "Index", "Cliente", new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/clientesViewMethods")
+}
